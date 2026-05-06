@@ -2,6 +2,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
 import { scientists } from "@/lib/physicsContent";
+import StructuredData from "@/components/StructuredData";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export const metadata = {
   title: "Знаменитые физики и их вклад в школьный курс",
@@ -19,6 +21,7 @@ export const metadata = {
 export default function ScientistsPage() {
   return (
     <div className="page-shell">
+      <StructuredData schema={getBreadcrumbListJsonLd([{ label: "Учёные", href: "/scientists" }])} />
       <Breadcrumbs items={[{ label: "Учёные" }]} />
       <div className="page-intro">
         <h1>Учёные</h1>

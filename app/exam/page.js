@@ -3,6 +3,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
 import { examContent } from "@/lib/physicsContent";
+import StructuredData from "@/components/StructuredData";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export const metadata = {
   title: "Подготовка к контрольной и экзамену по физике — план повторения",
@@ -20,6 +22,9 @@ export const metadata = {
 export default function ExamPage() {
   return (
     <div className="page-shell">
+      <StructuredData
+        schema={getBreadcrumbListJsonLd([{ label: "Подготовка к экзамену", href: "/exam" }])}
+      />
       <Breadcrumbs items={[{ label: "Подготовка к экзамену" }]} />
       <div className="page-intro">
         <h1>Подготовка к экзамену</h1>

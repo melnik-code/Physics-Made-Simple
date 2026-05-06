@@ -2,6 +2,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
 import { aboutCards } from "@/lib/physicsContent";
+import StructuredData from "@/components/StructuredData";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export const metadata = {
   title: "О проекте «Физика просто» — цель учебного пособия",
@@ -19,6 +21,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="page-shell">
+      <StructuredData schema={getBreadcrumbListJsonLd([{ label: "О проекте", href: "/about" }])} />
       <Breadcrumbs items={[{ label: "О проекте" }]} />
       <div className="page-intro">
         <h1>О проекте</h1>

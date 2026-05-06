@@ -1,7 +1,9 @@
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
+import StructuredData from "@/components/StructuredData";
 import { sections } from "@/lib/physicsContent";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export const metadata = {
   title: "Разделы школьной физики — механика, термодинамика, электричество, оптика, атом",
@@ -19,6 +21,7 @@ export const metadata = {
 export default function TopicsPage() {
   return (
     <div className="page-shell">
+      <StructuredData schema={getBreadcrumbListJsonLd([{ label: "Разделы", href: "/topics" }])} />
       <div className="page-intro">
         <h1>Разделы школьной физики</h1>
         <p className="lead">Выберите часть курса, которую хотите повторить.</p>

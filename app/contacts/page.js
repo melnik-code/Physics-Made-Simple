@@ -3,6 +3,7 @@ import Card from "@/components/Card";
 import Section from "@/components/Section";
 import StructuredData from "@/components/StructuredData";
 import { getContactPageJsonLd } from "@/lib/structuredData";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export const metadata = {
   title: "Контакты — Физика Просто",
@@ -21,6 +22,7 @@ export default function ContactsPage() {
   return (
     <div className="page-shell">
       <StructuredData schema={getContactPageJsonLd()} />
+      <StructuredData schema={getBreadcrumbListJsonLd([{ label: "Контакты", href: "/contacts" }])} />
       <Breadcrumbs items={[{ label: "Контакты" }]} />
       <div className="page-intro">
         <h1>Контакты</h1>

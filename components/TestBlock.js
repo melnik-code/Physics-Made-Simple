@@ -3,10 +3,33 @@
 import { useMemo, useState } from "react";
 import Button from "./Button";
 
-function shuffle(array) {
+function hashStringToUint32(value) {
+  // Deterministic seed for SSR/CSR parity.
+  // xfnv1a-like hash (stable across runtimes)
+  let h = 2166136261;
+  for (let i = 0; i < value.length; i += 1) {
+    h ^= value.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function mulberry32(seed) {
+  let t = seed >>> 0;
+  return function random() {
+    t += 0x6d2b79f5;
+    let x = t;
+    x = Math.imul(x ^ (x >>> 15), x | 1);
+    x ^= x + Math.imul(x ^ (x >>> 7), x | 61);
+    return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function shuffle(array, seed) {
   const copy = array.slice();
+  const rand = mulberry32(seed);
   for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(rand() * (i + 1));
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy;
@@ -18,12 +41,14 @@ export default function TestBlock({ questions }) {
 
   const shuffled = useMemo(() => {
     return questions.map((question) => {
+      const seed = hashStringToUint32(question.question);
       const options = shuffle(
         question.options.map((label, originalIndex) => ({
           id: `${question.question}__${originalIndex}`,
           label,
           originalIndex
-        }))
+        })),
+        seed
       );
 
       return {
