@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="footer-copy">
-          <p className="footer-title">Физика просто</p>
+          <p className="footer-title">Физика Просто</p>
           <p className="footer-meta">
             © 2026 Melnik-code. Все права защищены.
           </p>
@@ -15,6 +15,8 @@ export default function Footer() {
           <Link href="/topics">Разделы</Link>
           <Link href="/formulas">Формулы</Link>
           <Link href="/exam">Подготовка</Link>
+          <Link href="/about">О проекте</Link>
+          <Link href="/contacts">Контакты</Link>
         </div>
       </div>
     </footer>

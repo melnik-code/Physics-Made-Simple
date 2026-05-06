@@ -10,7 +10,9 @@ export default function sitemap() {
     "/formulas",
     "/exam",
     "/scientists",
-    "/about"
+    "/terms",
+    "/about",
+    "/contacts"
   ];
 
   const now = new Date();

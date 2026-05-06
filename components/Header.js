@@ -10,7 +10,8 @@ const links = [
   { href: "/terms", label: "Термины" },
   { href: "/exam", label: "Экзамен" },
   { href: "/scientists", label: "Учёные" },
-  { href: "/about", label: "О проекте" }
+  { href: "/about", label: "О проекте" },
+  { href: "/contacts", label: "Контакты" }
 ];
 
 function linkIsActive(pathname, href) {
@@ -61,7 +62,7 @@ export default function Header() {
                 φ
               </text>
             </svg>
-            <span>Физика просто</span>
+            <span>Физика Просто</span>
           </Link>
           <div className="header-nav-slot">
             <nav className="main-nav main-nav-desktop" aria-label="Основная навигация">

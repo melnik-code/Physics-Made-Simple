@@ -8,7 +8,7 @@ export default function robots() {
       {
         userAgent: "*",
         allow: "/",
-        disallow: []
+        disallow: ["/_next/"]
       }
     ],
     host: host || undefined,

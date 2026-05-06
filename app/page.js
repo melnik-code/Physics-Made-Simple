@@ -3,36 +3,70 @@ import Card from "@/components/Card";
 import StructuredData from "@/components/StructuredData";
 import Section from "@/components/Section";
 import TestBlock from "@/components/TestBlock";
-import { getHomeWebPageJsonLd } from "@/lib/structuredData";
+import { getFaqPageJsonLd, getHomeWebPageJsonLd } from "@/lib/structuredData";
 import { homeStats, homeTest, sections } from "@/lib/physicsContent";
 
 export const metadata = {
-  title: "Школьная физика онлайн: темы, формулы, задачи и тесты",
+  title: "Физика Просто — образовательная платформа по физике",
   description:
-    "Бесплатный курс по разделам: механика, теплота, электричество, оптика, атом. Теория, справочник формул, разбор задач и мини-тесты — для ОГЭ, ЕГЭ и школьных контрольных.",
+    "Физика Просто — образовательная платформа по физике: темы 7–11 классов, формулы, разбор задач и мини-тесты. Подготовка к ОГЭ и ЕГЭ онлайн.",
   alternates: {
     canonical: "/"
   },
   openGraph: {
-    title: "Школьная физика онлайн: темы, формулы и задачи",
+    title: "Физика Просто — образовательная платформа по физике",
     description:
-      "Повторение физики 7–11 классов: темы с теорией, формулы, задачи и самопроверка для экзаменов.",
+      "Темы, формулы, задачи и самопроверка по физике 7–11 классов. Подготовка к ОГЭ и ЕГЭ.",
     url: "/"
   }
 };
+
+const homeFaq = [
+  {
+    question: "Что такое «Физика Просто»?",
+    answer:
+      "«Физика Просто» — образовательная платформа по физике: темы школьной программы 7–11 классов, формулы, разборы и практика по задачам."
+  },
+  {
+    question: "Для кого подходит платформа «Физика Просто»?",
+    answer:
+      "Для учеников 7–11 классов, а также для тех, кто повторяет физику перед контрольной, ОГЭ или ЕГЭ."
+  },
+  {
+    question: "Как лучше учиться на платформе?",
+    answer:
+      "Выберите раздел, пройдите тему от понятий к формуле, затем решите пример и несколько задач, после чего проверьте себя мини‑тестом."
+  },
+  {
+    question: "Есть ли на «Физика Просто» формулы по разделам?",
+    answer:
+      "Да, есть справочник формул с фильтром по разделам и ссылками на темы, где формулы объясняются и применяются."
+  },
+  {
+    question: "Можно ли использовать материалы для подготовки к ОГЭ и ЕГЭ?",
+    answer:
+      "Да. Структура темы «теория → формулы → задачи → тест» помогает закреплять материал и повторять ключевые блоки перед экзаменом."
+  }
+];
 
 export default function HomePage() {
   return (
     <>
       <StructuredData schema={getHomeWebPageJsonLd()} />
+      <StructuredData schema={getFaqPageJsonLd({ urlPath: "/", questions: homeFaq })} />
       <section className="hero">
         <div className="hero-inner">
           <div className="hero-copy">
             <p className="eyebrow">Школьная физика 7-11 классов</p>
-            <h1>Физика просто</h1>
+            <h1>Физика Просто</h1>
             <p className="lead">
               Материал школьного курса собран по темам: от первых определений до задач, где
               формулы начинают работать по-настоящему.
+            </p>
+            <p className="muted">
+              <strong>Физика Просто</strong> — это удобный маршрут по школьной программе. Если вы
+              ищете «<strong>физика просто</strong>» или «<strong>платформа физика просто</strong>»,
+              начните с разделов: в каждой теме есть теория, формулы, пример и практика.
             </p>
             <div className="hero-actions">
               <Button href="/topics">Перейти к разделам</Button>
@@ -135,6 +169,17 @@ export default function HomePage() {
 
       <Section title="Пара вопросов в начале проверят базовые идеи.">
         <TestBlock questions={homeTest} />
+      </Section>
+
+      <Section title="FAQ: ответы о платформе «Физика Просто»" compact>
+        <div className="grid two align-start">
+          {homeFaq.map((item) => (
+            <Card accent="#6b7d90" key={item.question}>
+              <h3>{item.question}</h3>
+              <p className="muted">{item.answer}</p>
+            </Card>
+          ))}
+        </div>
       </Section>
     </>
   );
