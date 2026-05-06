@@ -101,7 +101,7 @@ export default async function TopicPage({ params }) {
       </div>
 
       <Section
-        title="Теория: ключевые идеи темы без лишней формализации формул."
+        title="Теория"
         accent={topicData.accent}
         compact
       >
@@ -116,7 +116,7 @@ export default async function TopicPage({ params }) {
       </Section>
 
       <Section
-        title={`Основные формулы, которые чаще встречаются в задачах на «${topicData.title.toLowerCase()}».`}
+        title="Формулы"
         accent={topicData.accent}
         compact
       >
@@ -128,7 +128,7 @@ export default async function TopicPage({ params }) {
       </Section>
 
       <Section
-        title="Пример: от условия к смыслу и вычислениям."
+        title="Пример"
         accent={topicData.accent}
         compact
       >
@@ -136,7 +136,7 @@ export default async function TopicPage({ params }) {
       </Section>
 
       <Section
-        title="Практика: сначала без подсказки, затем сверка с ходом решения."
+        title="Практика"
         accent={topicData.accent}
         compact
       >
@@ -148,7 +148,7 @@ export default async function TopicPage({ params }) {
       </Section>
 
       <Section
-        title="Мини-тест: насколько уверенно держится смысл темы."
+        title="Мини-тест"
         accent={topicData.accent}
         compact
       >
@@ -156,7 +156,7 @@ export default async function TopicPage({ params }) {
       </Section>
 
       <Section
-        title="Типичные ошибки — проверьте перед контрольной или экзаменом."
+        title="Частые ошибки"
         accent={topicData.accent}
         compact
       >
@@ -170,12 +170,13 @@ export default async function TopicPage({ params }) {
       </Section>
 
       <Section
-        title="Дальше по разделу: соседние темы и возврат к списку."
+        title="Дальше по разделу"
         accent={topicData.accent}
         compact
       >
         <TopicNavigation
           groupHref={`/topics/${topicData.sectionSlug}/${topicData.groupSlug}`}
+          groupTitle={topicData.groupTitle}
           previous={neighbors.previous}
           next={neighbors.next}
         />
