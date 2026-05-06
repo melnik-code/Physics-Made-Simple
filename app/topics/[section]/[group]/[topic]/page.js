@@ -7,11 +7,14 @@ import TaskCard from "@/components/TaskCard";
 import TestBlock from "@/components/TestBlock";
 import TopicNavigation from "@/components/TopicNavigation";
 import StructuredData from "@/components/StructuredData";
+import TermBlock from "@/components/TermBlock";
 import { getSiteUrl } from "@/lib/site";
 import { getLearningResourceJsonLd } from "@/lib/structuredData";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 import {
   getTopic,
   getTopicFormulas,
+  getTopicTerms,
   getTopicNeighbors,
   sections
 } from "@/lib/physicsContent";
@@ -68,6 +71,7 @@ export default async function TopicPage({ params }) {
   if (!topicData) notFound();
 
   const formulas = getTopicFormulas(section, group, topic);
+  const terms = getTopicTerms(section, group, topic);
   const neighbors = getTopicNeighbors(section, group, topic);
   const topicUrl = `${getSiteUrl()}${topicData.href}`;
 
@@ -79,6 +83,17 @@ export default async function TopicPage({ params }) {
           description: topicData.description,
           topicUrl
         })}
+      />
+      <StructuredData
+        schema={getBreadcrumbListJsonLd([
+          { label: "Разделы", href: "/topics" },
+          { label: topicData.sectionTitle, href: `/topics/${topicData.sectionSlug}` },
+          {
+            label: topicData.groupTitle,
+            href: `/topics/${topicData.sectionSlug}/${topicData.groupSlug}`
+          },
+          { label: topicData.title, href: topicData.href }
+        ])}
       />
       <Breadcrumbs
         items={[
@@ -105,12 +120,26 @@ export default async function TopicPage({ params }) {
         accent={topicData.accent}
         compact
       >
-        <div className="grid two">
-          {topicData.theory.map((item) => (
-            <Card accent={topicData.accent} key={item.title}>
-              <h3>{item.title}</h3>
-              <p className="muted">{item.text}</p>
-            </Card>
+        <div className="grid two align-start">
+          {topicData.theory
+            .filter((item) => item.type !== "term")
+            .map((item) => (
+              <Card accent={topicData.accent} key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </Card>
+            ))}
+        </div>
+      </Section>
+
+      <Section
+        title="Термины"
+        accent={topicData.accent}
+        compact
+      >
+        <div className="grid two align-start">
+          {terms.map((term) => (
+            <TermBlock accent={topicData.accent} key={term.id} term={term} />
           ))}
         </div>
       </Section>

@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 const links = [
   { href: "/topics", label: "Разделы" },
   { href: "/formulas", label: "Формулы" },
+  { href: "/terms", label: "Термины" },
   { href: "/exam", label: "Экзамен" },
   { href: "/scientists", label: "Учёные" },
   { href: "/about", label: "О проекте" }

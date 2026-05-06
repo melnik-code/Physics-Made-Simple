@@ -11,14 +11,13 @@ export default function FormulaCard({ formula, showTopicLink = false }) {
             <span key={symbol}>{symbol}</span>
           ))}
         </div>
-        <div className="formula-meta">
-          <span>{formula.topicTitle}</span>
-          {showTopicLink && (
+        {showTopicLink ? (
+          <div className="card-actions">
             <Button href={formula.topicHref} variant="secondary" size="small">
               Открыть тему
             </Button>
-          )}
-        </div>
+          </div>
+        ) : null}
       </div>
     </CardShell>
   );

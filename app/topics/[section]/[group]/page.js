@@ -3,7 +3,9 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
+import StructuredData from "@/components/StructuredData";
 import { getGroup, getSection, sections } from "@/lib/physicsContent";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export function generateStaticParams() {
   return sections.flatMap((section) =>
@@ -50,6 +52,13 @@ export default async function GroupPage({ params }) {
 
   return (
     <div className="page-shell" style={{ "--accent": section.accent }}>
+      <StructuredData
+        schema={getBreadcrumbListJsonLd([
+          { label: "Разделы", href: "/topics" },
+          { label: section.title, href: `/topics/${section.slug}` },
+          { label: group.title, href: `/topics/${section.slug}/${group.slug}` }
+        ])}
+      />
       <Breadcrumbs
         items={[
           { label: "Разделы", href: "/topics" },

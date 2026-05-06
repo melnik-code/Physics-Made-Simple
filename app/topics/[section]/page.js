@@ -3,7 +3,9 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
+import StructuredData from "@/components/StructuredData";
 import { getSection, sections } from "@/lib/physicsContent";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export function generateStaticParams() {
   return sections.map((section) => ({ section: section.slug }));
@@ -44,6 +46,12 @@ export default async function SectionPage({ params }) {
 
   return (
     <div className="page-shell" style={{ "--accent": section.accent }}>
+      <StructuredData
+        schema={getBreadcrumbListJsonLd([
+          { label: "Разделы", href: "/topics" },
+          { label: section.title, href: `/topics/${section.slug}` }
+        ])}
+      />
       <Breadcrumbs items={[{ label: "Разделы", href: "/topics" }, { label: section.title }]} />
       <div className="page-intro">
         <p className="eyebrow">Раздел</p>
@@ -69,19 +77,6 @@ export default async function SectionPage({ params }) {
               </div>
             </Card>
           ))}
-        </div>
-      </Section>
-
-      <Section
-        compact
-        title="Темы удобно проходить подряд: язык описания, формулы, задачи; справочник формул рядом."
-      >
-        <div className="quiet-band">
-          <div className="card-actions">
-            <Button href="/formulas" variant="secondary">
-              Открыть справочник формул
-            </Button>
-          </div>
         </div>
       </Section>
     </div>

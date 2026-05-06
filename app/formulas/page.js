@@ -1,7 +1,9 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FormulaBrowser from "@/components/FormulaBrowser";
 import Section from "@/components/Section";
+import StructuredData from "@/components/StructuredData";
 import { allFormulas, sections } from "@/lib/physicsContent";
+import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export const metadata = {
   title: "Справочник формул по физике для школьников с разбором тем",
@@ -19,6 +21,7 @@ export const metadata = {
 export default function FormulasPage() {
   return (
     <div className="page-shell">
+      <StructuredData schema={getBreadcrumbListJsonLd([{ label: "Формулы", href: "/formulas" }])} />
       <Breadcrumbs items={[{ label: "Формулы" }]} />
       <div className="page-intro">
         <h1>Формулы по разделам</h1>
