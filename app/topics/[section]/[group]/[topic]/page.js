@@ -8,6 +8,7 @@ import TestBlock from "@/components/TestBlock";
 import TopicNavigation from "@/components/TopicNavigation";
 import StructuredData from "@/components/StructuredData";
 import TermBlock from "@/components/TermBlock";
+import MathText from "@/components/MathText";
 import { getSiteUrl } from "@/lib/site";
 import { getLearningResourceJsonLd } from "@/lib/structuredData";
 import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
@@ -112,7 +113,9 @@ export default async function TopicPage({ params }) {
           {topicData.sectionTitle} / {topicData.groupTitle}
         </p>
         <h1>{topicData.title}</h1>
-        <p className="lead">{topicData.description}</p>
+        <p className="lead">
+          <MathText text={topicData.description} />
+        </p>
       </div>
 
       <Section
@@ -126,7 +129,9 @@ export default async function TopicPage({ params }) {
             .map((item) => (
               <Card accent={topicData.accent} key={item.title}>
                 <h3>{item.title}</h3>
-                <p>{item.text}</p>
+                <p>
+                  <MathText text={item.text} />
+                </p>
               </Card>
             ))}
         </div>

@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
 import StructuredData from "@/components/StructuredData";
+import MathText from "@/components/MathText";
 import { getGroup, getSection, sections } from "@/lib/physicsContent";
 import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
@@ -69,7 +70,9 @@ export default async function GroupPage({ params }) {
       <div className="page-intro">
         <p className="eyebrow">{section.title}</p>
         <h1>{group.title}</h1>
-        <p className="lead">{group.description}</p>
+        <p className="lead">
+          <MathText text={group.description} />
+        </p>
       </div>
 
       <Section compact>

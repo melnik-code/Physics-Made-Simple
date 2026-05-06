@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import Card from "@/components/Card";
 import Section from "@/components/Section";
 import StructuredData from "@/components/StructuredData";
+import MathText from "@/components/MathText";
 import { getSection, sections } from "@/lib/physicsContent";
 import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
@@ -56,7 +57,9 @@ export default async function SectionPage({ params }) {
       <div className="page-intro">
         <p className="eyebrow">Раздел</p>
         <h1>{section.title}</h1>
-        <p className="lead">{section.description}</p>
+        <p className="lead">
+          <MathText text={section.description} />
+        </p>
       </div>
 
       <Section compact>
