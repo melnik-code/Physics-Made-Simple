@@ -6,12 +6,12 @@ import { sections } from "@/lib/physicsContent";
 import { getBreadcrumbListJsonLd } from "@/lib/breadcrumbsSchema";
 
 export const metadata = {
-  title: "Разделы школьной физики — механика, термодинамика, электричество, оптика, атом",
+  title: "Разделы физики — механика, термодинамика, электричество, оптика, атом",
   description:
     "Курс по пяти блокам программы 7–11 класса: каждый раздел содержит темы с теорией, формулами и задачами для повторения к ОГЭ и ЕГЭ.",
   alternates: { canonical: "/topics" },
   openGraph: {
-    title: "Разделы школьной физики онлайн",
+    title: "Разделы физики онлайн",
     description:
       "Механика, термодинамика и тепло, постоянный ток, оптика, атомная физика — перейти к темам и формулам.",
     url: "/topics"
@@ -23,7 +23,7 @@ export default function TopicsPage() {
     <div className="page-shell">
       <StructuredData schema={getBreadcrumbListJsonLd([{ label: "Разделы", href: "/topics" }])} />
       <div className="page-intro">
-        <h1>Разделы школьной физики</h1>
+        <h1>Разделы физики</h1>
         <p className="lead">Выберите часть курса, которую хотите повторить.</p>
       </div>
 
